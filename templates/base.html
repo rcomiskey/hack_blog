@@ -20,34 +20,35 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Stack</a>
+            <a class="navbar-brand" href="{% url 'home'%}">Stack</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">New Post</a></li>
+                <li><a href="{% url 'addpost'%}">New Post</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false"><span>
                            
+                           {% if request.user.is_authenticated %}
+                           <img src="{{MEDIA_URL}}{{request.user.profile.image}}"
+                                                        style="width:25px; height: 25px; background-color: #12ABB2; color: #ffffff;"
+                                                        class="img-circle">
+                            {% else  %}                           
                             <img src="{{MEDIA_URL}}avatars/anonymous.jpg"
                                                         style="width:25px; height: 25px; background-color: #12ABB2; color: #ffffff;"
                                                         class="img-circle">                            
+                            {% endif %}                           
                                                         </span> Account <span
                             class="caret"></span></a>
-                   <ul class="dropdown-menu">
-                        {% if request.user.is_authenticated %}
-                        
-                            <li><a href="{% url 'profile' %}">Profile</a></li>
+                    <ul class="dropdown-menu">
+                            {% if request.user.is_authenticated %}
+                            <li><a href={% url 'profile'%}>Profile</a></li>
                             <li role="separator" class="divider"></li>
                             
-                            
-                            <li><a href="{% url 'logout' %}">Log Out</a></li>
-                            
+                            <li><a href={% url 'logout'%}>Log Out</a></li>
                             {% else %}
-                            
-                            <li><a href= "{% url 'login' %}">Log In</a></li>
-                            <li><a href="{% url 'register' %}">Register</a></li>
-                            
+                            <li><a href={% url 'login'%}>Log In</a></li>
+                            <li><a href={% url 'register'%}>Register</a></li>
                             {% endif %}
                     </ul>
                 </li>
