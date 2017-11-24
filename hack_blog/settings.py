@@ -26,7 +26,8 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['hack-blog-rcomiskey.c9users.io']
+ALLOWED_HOSTS = ['hack-blog-rcomiskey.c9users.io',
+    'hack-blog-stephenjmscott.c9users.io']
 
 
 # Application definition
