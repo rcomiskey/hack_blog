@@ -23,7 +23,7 @@ from blog.views import getposts
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', get_index, name="home"),
+    url(r'^$', getposts, name="home"),
     url(r'^accounts/', include(accounts_urls)),
     url(r'^blog/', include(blog_urls)),
 ]

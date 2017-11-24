@@ -48,21 +48,20 @@ def editpost(request, id):
     
 def viewpost(request, id):
     this_post = get_object_or_404(Post, pk=id)
-    comments = Comment.objects.filter(post=this_post)
+    comments = Comment.objects.filter(post=this_post, approved=True)
     form = CommentsForm()
     return render(request, "viewpost.html", {'post': this_post, 'comments': comments, 'form': form})
     
-# def addcomment(request, post_id):
-    # post = get_object_or_404(Post, pk=post_id)
-    # form = CommentsForm(request.POST)
+def addcomment(request, post_id):
     
-    # if form.is_valid():
-    #     comment = form.save(commit=False)
-    #     comment.author = request.user
-    #     comment.post = post
-    #     comment.save()
-def addcomment(request):
-    return redirect('index')
-        
- 
- 
+    post = get_object_or_404(Post, pk=post_id)
+    form = CommentsForm(request.POST)
+    
+    if form.is_valid():
+        print("ok")
+        comment = form.save(commit=False)
+        comment.author = request.user
+        comment.post = post
+        comment.published_date = timezone.now()
+        comment.save()
+        return redirect("viewpost", post_id)
