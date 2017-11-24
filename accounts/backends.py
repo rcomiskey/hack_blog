@@ -24,3 +24,7 @@ class EmailAuth(object):
             return None
         except User.DoesNotExist:
             return None
+            
+            
+            
+            #test#

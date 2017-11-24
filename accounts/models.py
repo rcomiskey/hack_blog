@@ -8,8 +8,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     image = models.ImageField(upload_to="avatars", blank=True, null=True, default="avatars/anonymous.png")
 
-   # def __str__(self):
-    #     return self.user
+
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
